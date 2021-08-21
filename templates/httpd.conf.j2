@@ -31,7 +31,7 @@ LogLevel warn
     LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined 
     LogFormat "%h %l %u %t \"%r\" %>s %b" common
     <IfModule logio_module>
-      LogFormat "%h %1 %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %0" combinedio
+      LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio
     </IfModule>
     CustomLog "logs/access_log" combined 
 </IfModule>
