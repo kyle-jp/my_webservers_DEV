@@ -1,0 +1,31 @@
+---
+- hosts: all
+  name: Install the web server and start it 
+  become: yes
+  ignore_errors: yes
+  vars:
+    httpd_packages: 
+      - httpd 
+      - mod_wsgi
+    apache_test_message: This is a test message 
+    apache_max_keep_alive_requests: 115
+
+  tasks:
+    - name: Install the apache web server 
+      yum:
+        name: "{{ httpd_packages }}" 
+        state: absent
+
+    - name: Open the firewalld http port 
+      firewalld:
+        port: 80/tcp 
+        permanent: true 
+        state: disabled
+      notify: restart firewalld service 
+
+  handlers:
+    - name: restart firewalld service 
+      service:
+        name: firewalld 
+        state: restarted 
+        enabled: yes
