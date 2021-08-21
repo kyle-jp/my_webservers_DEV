@@ -12,7 +12,7 @@
   tasks:
     - name: Install the apache web server 
       yum:
-        name: "( httpd packages }}" 
+        name: "( httpd_packages }}" 
         state: present
       notify: restart apache service
 
